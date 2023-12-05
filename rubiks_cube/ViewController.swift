@@ -13,6 +13,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var currentSide: Int = 0
     var vertical: Int = 0
     var horizontal: Int = 0
+    var selected: [Int] = [-1,-1,-1]
+    var selectType: Bool = true
+    
     let c = Cube(6,3,3)
     
     let colorMap: [Int:UIColor] = [
@@ -93,13 +96,46 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         return getRow(horizontal)[vertical]
     }
     
+    func selectSquares(indexPath: IndexPath) {
+        let previous = selected
+        print(indexPath.row % 3)
+        if(selectType) {
+            if(indexPath.row + 3 > 8) {
+                selected = [indexPath.row - 6, indexPath.row - 3, indexPath.row]
+            } else if(indexPath.row - 3 < 0) {
+                selected = [indexPath.row, indexPath.row + 3, indexPath.row + 6]
+            } else {
+                selected = [indexPath.row - 3, indexPath.row, indexPath.row + 3]
+            }
+        } else {
+            if(indexPath.row % 3 + 1 > 3) {
+                selected = [indexPath.row - 2, indexPath.row - 1, indexPath.row]
+            } else if(indexPath.row - 1 < 0) {
+                selected = [indexPath.row, indexPath.row + 1, indexPath.row + 2]
+            } else {
+                selected = [indexPath.row - 1, indexPath.row, indexPath.row + 1]
+            }
+        }
+        
+        if(previous == selected) {
+            selectType = !selectType
+            selectSquares(indexPath: indexPath)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 9
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let square = collectionView.dequeueReusableCell(withReuseIdentifier: "square", for: indexPath) as! CubeSquare
-        square.squareColor.backgroundColor = colorMap[c.state[getIndex()][indexPath.row / 3][indexPath.row % 3]]
+        square.squareColor.tintColor = colorMap[c.state[getIndex()][indexPath.row / 3][indexPath.row % 3]]
+        
+        if(selected.contains(indexPath.row)) {
+            square.squareColor.backgroundColor = UIColor.gray
+        } else {
+            square.squareColor.backgroundColor = UIColor.clear
+        }
         return square
     }
     
@@ -113,6 +149,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectSquares(indexPath: indexPath)
+        print(selected)
+        
+        self.collectionView.reloadData()
     }
 }
 
