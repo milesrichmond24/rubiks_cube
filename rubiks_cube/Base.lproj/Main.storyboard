@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lCq-IM-cja">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lCq-IM-cja">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -18,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FCL-At-ATF">
-                                <rect key="frame" x="0.0" y="-19.5" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="-17.5" width="414" height="896"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zth-NW-JiF">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="89.5"/>
@@ -114,20 +115,47 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="FCL-At-ATF" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Dx6-Fe-YEn"/>
                             <constraint firstItem="FCL-At-ATF" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Irm-VD-XEe"/>
                             <constraint firstItem="FCL-At-ATF" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="NGT-sJ-W3v"/>
                             <constraint firstItem="FCL-At-ATF" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="dIq-HF-hBE"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="mSt-QL-5H7" appends="YES" id="WhV-rV-FUq"/>
+                            <outletCollection property="gestureRecognizers" destination="7Rp-SW-tNn" appends="YES" id="GkU-mf-edV"/>
+                            <outletCollection property="gestureRecognizers" destination="sjV-s5-ILL" appends="YES" id="0Cc-Fk-VEO"/>
+                            <outletCollection property="gestureRecognizers" destination="df7-IP-bWu" appends="YES" id="xcs-ec-02l"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Game" image="pencil" catalog="system" id="Axm-lJ-I0Y"/>
                     <connections>
                         <outlet property="collectionView" destination="KUY-n9-sU6" id="hZ7-0h-4pl"/>
+                        <outlet property="up_swipe" destination="df7-IP-bWu" id="UZ8-8O-lUm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="df7-IP-bWu"/>
+                <swipeGestureRecognizer direction="right" id="mSt-QL-5H7">
+                    <connections>
+                        <action selector="right_swipe_action:" destination="BYZ-38-t0r" id="8WX-tx-ppj"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="7Rp-SW-tNn">
+                    <connections>
+                        <action selector="left_swipe_action:" destination="BYZ-38-t0r" id="o2k-qa-rqV"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="down" id="sjV-s5-ILL">
+                    <connections>
+                        <action selector="down_swipe_action:" destination="BYZ-38-t0r" id="r6e-zb-bbi"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="up" id="df7-IP-bWu">
+                    <connections>
+                        <action selector="up_swipe_action:" destination="BYZ-38-t0r" id="f1x-N5-rtW"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1689.8550724637682" y="-71.651785714285708"/>
         </scene>
@@ -150,7 +178,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="capsule.inset.filled" catalog="system" width="128" height="94"/>
+        <image name="capsule.inset.filled" catalog="system" width="128" height="95"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

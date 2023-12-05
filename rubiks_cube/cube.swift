@@ -23,4 +23,8 @@ struct Cube {
         
         print("Cube Initialized")
     }
+    
+    func rotate(rType row_or_col: Bool) {
+        
+    }
 }

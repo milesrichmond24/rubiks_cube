@@ -7,7 +7,8 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
+    @IBOutlet var up_swipe: UISwipeGestureRecognizer!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var currentSide: Int = 0
@@ -31,6 +32,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        up_swipe.delegate = self
+        
         
         drawSide()
     }
@@ -108,9 +111,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 selected = [indexPath.row - 3, indexPath.row, indexPath.row + 3]
             }
         } else {
-            if(indexPath.row % 3 + 1 > 3) {
+            if(indexPath.row % 3 >= 2) {
                 selected = [indexPath.row - 2, indexPath.row - 1, indexPath.row]
-            } else if(indexPath.row - 1 < 0) {
+            } else if(indexPath.row % 3 <= 0) {
                 selected = [indexPath.row, indexPath.row + 1, indexPath.row + 2]
             } else {
                 selected = [indexPath.row - 1, indexPath.row, indexPath.row + 1]
@@ -156,6 +159,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         print(selected)
         
         self.collectionView.reloadData()
+    }
+    @IBAction func up_swipe_action(_ sender: UISwipeGestureRecognizer) {
+        print("up")
+    }
+    @IBAction func down_swipe_action(_ sender: UISwipeGestureRecognizer) {
+        print("down")
+    }
+    @IBAction func left_swipe_action(_ sender: UISwipeGestureRecognizer) {
+        print("left")
+    }
+    @IBAction func right_swipe_action(_ sender: UISwipeGestureRecognizer) {
+        print("right")
     }
 }
 
