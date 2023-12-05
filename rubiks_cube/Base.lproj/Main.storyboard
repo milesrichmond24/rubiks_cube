@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -41,53 +42,40 @@
                                                     <action selector="move_left:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QxC-ZP-izM"/>
                                                 </connections>
                                             </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="kqm-mZ-IW9">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KUY-n9-sU6">
                                                 <rect key="frame" x="41.5" y="0.0" width="331" height="627"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="aX4-ii-VVO">
-                                                        <rect key="frame" x="0.0" y="0.0" width="331" height="209"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="En9-Is-35g">
-                                                                <rect key="frame" x="0.0" y="-1" width="110.5" height="210"/>
-                                                            </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wcp-uj-sNr">
-                                                                <rect key="frame" x="110.5" y="-1" width="110" height="210"/>
-                                                            </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NTy-SX-vx7">
-                                                                <rect key="frame" x="220.5" y="-1" width="110.5" height="210"/>
-                                                            </imageView>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="7pQ-fE-1bd">
-                                                        <rect key="frame" x="0.0" y="209" width="331" height="209"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TRw-rt-RLq">
-                                                                <rect key="frame" x="0.0" y="-1" width="110.5" height="210"/>
-                                                            </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="DbA-Tp-Fzd">
-                                                                <rect key="frame" x="110.5" y="-1" width="110" height="210"/>
-                                                            </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="FYy-mS-Rly">
-                                                                <rect key="frame" x="220.5" y="-1" width="110.5" height="210"/>
-                                                            </imageView>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="YFp-g0-dGi">
-                                                        <rect key="frame" x="0.0" y="418" width="331" height="209"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4xO-IK-EhW">
-                                                                <rect key="frame" x="0.0" y="-1" width="110.5" height="210"/>
-                                                            </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1fi-fQ-pY5">
-                                                                <rect key="frame" x="110.5" y="-1" width="110" height="210"/>
-                                                            </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vMk-NR-hSG">
-                                                                <rect key="frame" x="220.5" y="-1" width="110.5" height="210"/>
-                                                            </imageView>
-                                                        </subviews>
-                                                    </stackView>
-                                                </subviews>
-                                            </stackView>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vjA-zg-chi">
+                                                    <size key="itemSize" width="128" height="128"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="square" id="XkF-xo-iU2" customClass="CubeSquare" customModule="rubiks_cube" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ckS-TQ-Wya">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XoC-6s-jzc">
+                                                                    <rect key="frame" x="0.0" y="-1" width="128" height="129"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="XoC-6s-jzc" firstAttribute="width" secondItem="ckS-TQ-Wya" secondAttribute="width" id="07e-0T-J71"/>
+                                                                <constraint firstItem="XoC-6s-jzc" firstAttribute="centerX" secondItem="ckS-TQ-Wya" secondAttribute="centerX" id="GWa-xy-s2a"/>
+                                                                <constraint firstItem="XoC-6s-jzc" firstAttribute="height" secondItem="ckS-TQ-Wya" secondAttribute="height" id="OIa-4b-nVh"/>
+                                                                <constraint firstItem="XoC-6s-jzc" firstAttribute="centerY" secondItem="ckS-TQ-Wya" secondAttribute="centerY" id="feG-hH-rOY"/>
+                                                            </constraints>
+                                                        </collectionViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="squareColor" destination="XoC-6s-jzc" id="EsV-HN-8wM"/>
+                                                        </connections>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QrK-yZ-owA">
                                                 <rect key="frame" x="372.5" y="0.0" width="41.5" height="627"/>
                                                 <state key="normal" title="Button"/>
@@ -98,8 +86,10 @@
                                             </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="KUY-n9-sU6" firstAttribute="centerY" secondItem="GsY-Lz-kAQ" secondAttribute="centerY" id="Lha-YR-u5L"/>
                                             <constraint firstItem="cPo-Hg-kY1" firstAttribute="width" secondItem="QrK-yZ-owA" secondAttribute="width" id="TUi-Hr-vKv"/>
                                             <constraint firstItem="cPo-Hg-kY1" firstAttribute="width" secondItem="GsY-Lz-kAQ" secondAttribute="width" multiplier="0.1" id="meH-na-QZW"/>
+                                            <constraint firstItem="KUY-n9-sU6" firstAttribute="width" secondItem="GsY-Lz-kAQ" secondAttribute="width" multiplier="0.8" id="qF4-f5-hg8"/>
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7R-t2-AEd">
@@ -133,20 +123,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Game" image="pencil" catalog="system" id="Axm-lJ-I0Y"/>
                     <connections>
-                        <outlet property="_1" destination="En9-Is-35g" id="QNZ-1x-8Td"/>
-                        <outlet property="_2" destination="wcp-uj-sNr" id="HL4-J9-l5V"/>
-                        <outlet property="_3" destination="NTy-SX-vx7" id="Hmr-Tm-CsF"/>
-                        <outlet property="_4" destination="TRw-rt-RLq" id="Ntc-mu-rS3"/>
-                        <outlet property="_5" destination="DbA-Tp-Fzd" id="dGr-pU-QlL"/>
-                        <outlet property="_6" destination="FYy-mS-Rly" id="cMs-z4-31v"/>
-                        <outlet property="_7" destination="4xO-IK-EhW" id="dtL-Ii-iAR"/>
-                        <outlet property="_8" destination="1fi-fQ-pY5" id="fY6-vY-5gx"/>
-                        <outlet property="_9" destination="vMk-NR-hSG" id="Yj1-O2-BLe"/>
+                        <outlet property="collectionView" destination="KUY-n9-sU6" id="hZ7-0h-4pl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="df7-IP-bWu"/>
             </objects>
-            <point key="canvasLocation" x="1691" y="-71"/>
+            <point key="canvasLocation" x="1689.8550724637682" y="-71.651785714285708"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="pOz-8T-U94">

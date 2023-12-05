@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B17B73412B1EC0DE00B676DB /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17B73402B1EC0DE00B676DB /* Layout.swift */; };
 		B1D6E7A52B1E99E3001668C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D6E7A42B1E99E3001668C9 /* AppDelegate.swift */; };
 		B1D6E7A72B1E99E3001668C9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D6E7A62B1E99E3001668C9 /* SceneDelegate.swift */; };
 		B1D6E7A92B1E99E3001668C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D6E7A82B1E99E3001668C9 /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 		B1D6E7C92B1E99E6001668C9 /* rubiks_cubeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D6E7C82B1E99E6001668C9 /* rubiks_cubeUITests.swift */; };
 		B1D6E7CB2B1E99E6001668C9 /* rubiks_cubeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D6E7CA2B1E99E6001668C9 /* rubiks_cubeUITestsLaunchTests.swift */; };
 		B1D6E7D82B1E9A3E001668C9 /* cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D6E7D72B1E9A3E001668C9 /* cube.swift */; };
+		B1D6E7DC2B1EBAB2001668C9 /* CubeSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D6E7DB2B1EBAB2001668C9 /* CubeSquare.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B17B73402B1EC0DE00B676DB /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		B1D6E7A12B1E99E3001668C9 /* rubiks_cube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rubiks_cube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1D6E7A42B1E99E3001668C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1D6E7A62B1E99E3001668C9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +56,7 @@
 		B1D6E7C82B1E99E6001668C9 /* rubiks_cubeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rubiks_cubeUITests.swift; sourceTree = "<group>"; };
 		B1D6E7CA2B1E99E6001668C9 /* rubiks_cubeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rubiks_cubeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B1D6E7D72B1E9A3E001668C9 /* cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cube.swift; sourceTree = "<group>"; };
+		B1D6E7DB2B1EBAB2001668C9 /* CubeSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeSquare.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +111,9 @@
 				B1D6E7A42B1E99E3001668C9 /* AppDelegate.swift */,
 				B1D6E7A62B1E99E3001668C9 /* SceneDelegate.swift */,
 				B1D6E7A82B1E99E3001668C9 /* ViewController.swift */,
+				B1D6E7DB2B1EBAB2001668C9 /* CubeSquare.swift */,
 				B1D6E7AA2B1E99E3001668C9 /* Main.storyboard */,
+				B17B73402B1EC0DE00B676DB /* Layout.swift */,
 				B1D6E7B02B1E99E6001668C9 /* Assets.xcassets */,
 				B1D6E7B22B1E99E6001668C9 /* LaunchScreen.storyboard */,
 				B1D6E7B52B1E99E6001668C9 /* Info.plist */,
@@ -265,8 +271,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1D6E7A92B1E99E3001668C9 /* ViewController.swift in Sources */,
+				B1D6E7DC2B1EBAB2001668C9 /* CubeSquare.swift in Sources */,
 				B1D6E7A52B1E99E3001668C9 /* AppDelegate.swift in Sources */,
 				B1D6E7D82B1E9A3E001668C9 /* cube.swift in Sources */,
+				B17B73412B1EC0DE00B676DB /* Layout.swift in Sources */,
 				B1D6E7AF2B1E99E3001668C9 /* rubiks_cube.xcdatamodeld in Sources */,
 				B1D6E7A72B1E99E3001668C9 /* SceneDelegate.swift in Sources */,
 			);

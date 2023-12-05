@@ -7,16 +7,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    @IBOutlet weak var _1: UIImageView!
-    @IBOutlet weak var _2: UIImageView!
-    @IBOutlet weak var _3: UIImageView!
-    @IBOutlet weak var _4: UIImageView!
-    @IBOutlet weak var _5: UIImageView!
-    @IBOutlet weak var _6: UIImageView!
-    @IBOutlet weak var _7: UIImageView!
-    @IBOutlet weak var _8: UIImageView!
-    @IBOutlet weak var _9: UIImageView!
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var currentSide: Int = 0
     var vertical: Int = 0
@@ -34,21 +26,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
         drawSide()
     }
     
     func drawSide() {
         currentSide = getIndex()
-        let side = c.state[currentSide]
-        _1.backgroundColor = colorMap[side[0][0]]
-        _2.backgroundColor = colorMap[side[0][1]]
-        _3.backgroundColor = colorMap[side[0][2]]
-        _4.backgroundColor = colorMap[side[1][0]]
-        _5.backgroundColor = colorMap[side[1][1]]
-        _6.backgroundColor = colorMap[side[1][2]]
-        _7.backgroundColor = colorMap[side[2][0]]
-        _8.backgroundColor = colorMap[side[2][1]]
-        _9.backgroundColor = colorMap[side[2][2]]
+        collectionView.reloadData()
     }
     
     @IBAction func move_up(_ sender: UIButton) {
@@ -105,6 +91,28 @@ class ViewController: UIViewController {
         }
         
         return getRow(horizontal)[vertical]
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 9
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let square = collectionView.dequeueReusableCell(withReuseIdentifier: "square", for: indexPath) as! CubeSquare
+        square.squareColor.backgroundColor = colorMap[c.state[getIndex()][indexPath.row / 3][indexPath.row % 3]]
+        return square
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: collectionView.bounds.width / 3, height: collectionView.bounds.width / 3)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
 
