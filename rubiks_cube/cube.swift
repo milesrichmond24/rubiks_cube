@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Cube {
     var state: [[[Int]]] = [[[Int]]]()
@@ -24,7 +25,37 @@ struct Cube {
         print("Cube Initialized")
     }
     
-    func rotate(rType row_or_col: Bool) {
+    func rotate(rType row: Bool, _ sender: UISwipeGestureRecognizer, sides: [Int], selected: [Int]) {
+        if(row) {
+            switch(sender.direction) {
+            case .left:
+                // For each side, select squares represented in selected
+                var tempArr: [[Int]] = [[Int]]()
+                for x in sides {
+                    tempArr.append([Int]())
+                    for y in selected {
+                        tempArr[x].append(state[x][y / 3][y % 3])
+                    }
+                }
+                print(tempArr)
+            case .right:
+                print("rotate right")
+            default:
+                print("invalid swipe")
+            }
+        } else {
+            switch(sender.direction) {
+            case .up:
+                print("rotate up")
+            case .down:
+                print("rotate down")
+            default:
+                print("invalid swipe")
+            }
+        }
+    }
+    
+    func doRotation() {
         
     }
 }
