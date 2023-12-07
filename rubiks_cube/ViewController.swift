@@ -17,7 +17,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var selected: [Int] = [-1,-1,-1]
     var selectType: Bool = false
     
-    let c = Cube(6,3,3)
+    var c = Cube(6,3,3)
     
     let colorMap: [Int:UIColor] = [
         0 : UIColor.red,
@@ -181,23 +181,29 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.collectionView.reloadData()
     }
     @IBAction func up_swipe_action(_ sender: UISwipeGestureRecognizer) {
+        
         if selected != [-1,-1,-1] {
-            c.rotate(rType: !selectType, sender, sides: getVerticalSides(hPos: vertical), selected: selected)
+            c.rotate(rType: !selectType, sender, sides: getVerticalSides(hPos: horizontal), selected: selected)
+            collectionView.reloadData()
         }
     }
     @IBAction func down_swipe_action(_ sender: UISwipeGestureRecognizer) {
         if selected != [-1,-1,-1] {
-            c.rotate(rType: !selectType, sender, sides: getVerticalSides(hPos: vertical), selected: selected)
+            c.rotate(rType: !selectType, sender, sides: getVerticalSides(hPos: horizontal), selected: selected)
+            collectionView.reloadData()
         }
     }
     @IBAction func left_swipe_action(_ sender: UISwipeGestureRecognizer) {
+        print("current side: \(currentSide)")
         if selected != [-1,-1,-1] {
-            c.rotate(rType: !selectType, sender, sides: getHorizontalSides(vPos: horizontal), selected: selected)
+            c.rotate(rType: !selectType, sender, sides: getHorizontalSides(vPos: vertical), selected: selected)
+            collectionView.reloadData()
         }
     }
     @IBAction func right_swipe_action(_ sender: UISwipeGestureRecognizer) {
         if selected != [-1,-1,-1] {
-            c.rotate(rType: !selectType, sender, sides: getIndex(), selected: selected)
+            c.rotate(rType: !selectType, sender, sides: getHorizontalSides(vPos: vertical), selected: selected)
+            collectionView.reloadData()
         }
         
     }

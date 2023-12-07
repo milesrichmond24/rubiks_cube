@@ -25,19 +25,51 @@ struct Cube {
         print("Cube Initialized")
     }
     
-    func rotate(rType row: Bool, _ sender: UISwipeGestureRecognizer, sides: [Int], selected: [Int]) {
+    mutating func rotate(rType row: Bool, _ sender: UISwipeGestureRecognizer, sides: [Int], selected: [Int]) {
         if(row) {
+            var tempArr: [Int] = [Int]()
+            for x in sides {
+                print("side included: \(x)")
+                for y in selected {
+                    print("selected side: \(y)")
+                    tempArr.append(state[x][y / 3][y % 3])
+                    
+                }
+            }
+            print("tempArr: \(tempArr)")
+            
+            print("state:")
+            print("side1: \(state[0])")
+            print("side2: \(state[1])")
+            print("side3: \(state[2])")
+            print("side4: \(state[3])")
+            print("side5: \(state[4])")
+            print("side6: \(state[5])")
+            
             switch(sender.direction) {
             case .left:
-                // For each side, select squares represented in selected
-                var tempArr: [[Int]] = [[Int]]()
-                for x in sides {
-                    tempArr.append([Int]())
-                    for y in selected {
-                        tempArr[x].append(state[x][y / 3][y % 3])
+                var tempArr2 = [Int]()
+                for x in 0..<sides.count {
+                    for y in 0..<selected.count {
+                        if((x + 1) * 3 + y >= tempArr.count) {
+                            state[sides[x]][selected[y] / 3][selected[y] % 3] = tempArr[y]
+                            tempArr2.append(tempArr[y])
+                        } else {
+                            state[sides[x]][selected[y] / 3][selected[y] % 3] = tempArr[(x + 1) * 3 + y]
+                            tempArr2.append(tempArr[(x+1) * 3 + y])
+                        }
+                        
                     }
                 }
-                print(tempArr)
+                print("tempArr2: \(tempArr2)")
+                
+                print("state:")
+                print("side1: \(state[0])")
+                print("side2: \(state[1])")
+                print("side3: \(state[2])")
+                print("side4: \(state[3])")
+                print("side5: \(state[4])")
+                print("side6: \(state[5])")
             case .right:
                 print("rotate right")
             default:
