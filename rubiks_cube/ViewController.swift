@@ -15,7 +15,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var vertical: Int = 0
     var horizontal: Int = 0
     var selected: [Int] = [-1,-1,-1]
-    var selectType: Bool = false
+    var selectType: Bool = true
     
     var c = Cube(6,3,3)
     
@@ -99,16 +99,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         return getRow(horizontal)[vertical]
     }
     
+    // Gets the sides along the horizontal (right, back, left)
     func getHorizontalSides(vPos: Int) -> [Int] {
         switch vPos {
-        case 0: return [4,1,5,3]
-        case 1: return [0,1,2,3]
-        case 2: return [5,1,4,3]
-        case 3: return [2,1,0,3]
+        case 0: return [4,0,5,2]
+        case 1: return [0,1,2,1]
+        case 2: return [5,1,4,0]
+        case 3: return [3,3,3,3]
         default: return [0,0,0,0]
         }
     }
     
+    // Gets the sides along the vertical (up, back, down)
     func getVerticalSides(hPos: Int) -> [Int] {
         switch hPos {
         case 0: return [4,1,5,3]
@@ -152,7 +154,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let square = collectionView.dequeueReusableCell(withReuseIdentifier: "square", for: indexPath) as! CubeSquare
-        square.squareColor.tintColor = colorMap[c.state[getIndex()][indexPath.row / 3][indexPath.row % 3]]
+        square.squareColor.tintColor = colorMap[c.state[getIndex()][indexPath.row]]
         
         if(selected.contains(indexPath.row)) {
             square.squareColor.backgroundColor = UIColor.gray
