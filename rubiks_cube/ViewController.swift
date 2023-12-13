@@ -17,6 +17,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var selected: [Int] = [-1,-1,-1]
     var selectType: Bool = true
     
+    var configuringSide = 0
+    
     var c = Cube(6,3,3)
     
     let colorMap: [Int:UIColor] = [
@@ -154,12 +156,47 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let square = collectionView.dequeueReusableCell(withReuseIdentifier: "square", for: indexPath) as! CubeSquare
-        square.squareColor.tintColor = colorMap[c.state[getIndex()][indexPath.row]]
+        
+        switch(indexPath.row) {
+        case 0:
+            square.setColors(c.state[0])
+            print("0")
+        case 1:
+            square.setColors(c.state[1])
+            print("1")
+        case 2:
+            square.clearColors()
+            print("2")
+            return square
+        case 3:
+            square.setColors(c.state[2])
+            print("3")
+        case 4:
+            square.setColors(c.state[3])
+            print("4")
+        case 5:
+            square.setColors(c.state[4])
+            print("5")
+        case 6:
+            square.clearColors()
+            print("6")
+        case 7:
+            square.setColors(c.state[5])
+            print("7")
+        case 8:
+            square.clearColors()
+            print("8")
+        default:
+            print("this shouldnt happen")
+        }
+        
+        
+        
         
         if(selected.contains(indexPath.row)) {
-            square.squareColor.backgroundColor = UIColor.gray
+            square.select(indexPath.row)
         } else {
-            square.squareColor.backgroundColor = UIColor.clear
+            square.clearSelect(indexPath.row)
         }
         return square
     }
@@ -178,7 +215,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectSquares(indexPath: indexPath)
-        print(selected)
+        print("selected: \(selected)")
+        
         
         self.collectionView.reloadData()
     }

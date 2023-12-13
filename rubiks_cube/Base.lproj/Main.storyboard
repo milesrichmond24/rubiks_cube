@@ -60,19 +60,73 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="capsule.inset.filled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XoC-6s-jzc">
-                                                                    <rect key="frame" x="0.0" y="0.5" width="128" height="126.5"/>
-                                                                </imageView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Cq1-Yx-ABt">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                                    <subviews>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hsV-dH-RBg">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="42.5"/>
+                                                                            <subviews>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="capsule.inset.filled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XoC-6s-jzc">
+                                                                                    <rect key="frame" x="0.0" y="0.5" width="42.5" height="41"/>
+                                                                                </imageView>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="capsule.inset.filled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vUI-Tp-2C7">
+                                                                                    <rect key="frame" x="42.5" y="0.5" width="43" height="41"/>
+                                                                                </imageView>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="capsule.inset.filled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Of3-K6-Usj">
+                                                                                    <rect key="frame" x="85.5" y="0.5" width="42.5" height="41"/>
+                                                                                </imageView>
+                                                                            </subviews>
+                                                                        </stackView>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8Xf-ot-4v4">
+                                                                            <rect key="frame" x="0.0" y="42.5" width="128" height="43"/>
+                                                                            <subviews>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="capsule.inset.filled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RLC-jX-gJJ">
+                                                                                    <rect key="frame" x="0.0" y="0.5" width="42.5" height="41.5"/>
+                                                                                </imageView>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="capsule.inset.filled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mHC-k9-X1K">
+                                                                                    <rect key="frame" x="42.5" y="0.5" width="43" height="41.5"/>
+                                                                                </imageView>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="capsule.inset.filled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="s9q-td-m79">
+                                                                                    <rect key="frame" x="85.5" y="0.5" width="42.5" height="41.5"/>
+                                                                                </imageView>
+                                                                            </subviews>
+                                                                        </stackView>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="x0h-Dv-8NE">
+                                                                            <rect key="frame" x="0.0" y="85.5" width="128" height="42.5"/>
+                                                                            <subviews>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="capsule.inset.filled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IBE-Gx-DhT">
+                                                                                    <rect key="frame" x="0.0" y="0.5" width="42.5" height="41"/>
+                                                                                </imageView>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="capsule.inset.filled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JQY-97-l7P">
+                                                                                    <rect key="frame" x="42.5" y="0.5" width="43" height="41"/>
+                                                                                </imageView>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="capsule.inset.filled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qAh-tW-ydQ">
+                                                                                    <rect key="frame" x="85.5" y="0.5" width="42.5" height="41"/>
+                                                                                </imageView>
+                                                                            </subviews>
+                                                                        </stackView>
+                                                                    </subviews>
+                                                                </stackView>
                                                             </subviews>
+                                                            <gestureRecognizers/>
                                                             <constraints>
-                                                                <constraint firstItem="XoC-6s-jzc" firstAttribute="width" secondItem="ckS-TQ-Wya" secondAttribute="width" id="07e-0T-J71"/>
-                                                                <constraint firstItem="XoC-6s-jzc" firstAttribute="centerX" secondItem="ckS-TQ-Wya" secondAttribute="centerX" id="GWa-xy-s2a"/>
-                                                                <constraint firstItem="XoC-6s-jzc" firstAttribute="height" secondItem="ckS-TQ-Wya" secondAttribute="height" id="OIa-4b-nVh"/>
-                                                                <constraint firstItem="XoC-6s-jzc" firstAttribute="centerY" secondItem="ckS-TQ-Wya" secondAttribute="centerY" id="feG-hH-rOY"/>
+                                                                <constraint firstItem="Cq1-Yx-ABt" firstAttribute="centerX" secondItem="ckS-TQ-Wya" secondAttribute="centerX" id="Cvs-Ja-L6c"/>
+                                                                <constraint firstItem="Cq1-Yx-ABt" firstAttribute="centerY" secondItem="ckS-TQ-Wya" secondAttribute="centerY" id="Ms0-wT-hZj"/>
+                                                                <constraint firstItem="Cq1-Yx-ABt" firstAttribute="width" secondItem="ckS-TQ-Wya" secondAttribute="width" id="Rql-Aj-dWg"/>
+                                                                <constraint firstItem="Cq1-Yx-ABt" firstAttribute="height" secondItem="ckS-TQ-Wya" secondAttribute="height" id="ci7-Sn-haq"/>
                                                             </constraints>
                                                         </collectionViewCellContentView>
+                                                        <gestureRecognizers/>
                                                         <connections>
-                                                            <outlet property="squareColor" destination="XoC-6s-jzc" id="EsV-HN-8wM"/>
+                                                            <outlet property="s1" destination="XoC-6s-jzc" id="nNM-gJ-0ex"/>
+                                                            <outlet property="s2" destination="vUI-Tp-2C7" id="Nnp-DG-cJv"/>
+                                                            <outlet property="s3" destination="Of3-K6-Usj" id="DOW-Tc-FMH"/>
+                                                            <outlet property="s4" destination="RLC-jX-gJJ" id="Wl3-n2-I7y"/>
+                                                            <outlet property="s5" destination="mHC-k9-X1K" id="Fu3-Nc-fzq"/>
+                                                            <outlet property="s6" destination="s9q-td-m79" id="Iyo-Oy-fIQ"/>
+                                                            <outlet property="s7" destination="IBE-Gx-DhT" id="1zw-xy-mUq"/>
+                                                            <outlet property="s8" destination="JQY-97-l7P" id="U5G-46-c43"/>
+                                                            <outlet property="s9" destination="qAh-tW-ydQ" id="8SM-UG-ySM"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
