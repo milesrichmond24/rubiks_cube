@@ -88,10 +88,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func getIndex() -> Int {
         let getRow = { (hPos: Int) -> [Int] in
             switch hPos {
-            case 0: return [4,1,5,3]
-            case 1: return [0,1,2,3]
-            case 2: return [5,1,4,3]
-            case 3: return [2,1,0,3]
+            case 0: return [0,1,2,3]
+            case 1: return [5,1,4,3]
+            case 2: return [2,1,0,3]
+            case 3: return [4,1,5,3]
             default: return [0,0,0,0]
             }
         }
@@ -185,26 +185,26 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBAction func up_swipe_action(_ sender: UISwipeGestureRecognizer) {
         
         if selected != [-1,-1,-1] {
-            c.rotate(rType: !selectType, sender, sides: getVerticalSides(hPos: horizontal), selected: selected)
+            c.rotate(!selectType, sender, currentSide, selected)
             collectionView.reloadData()
         }
     }
     @IBAction func down_swipe_action(_ sender: UISwipeGestureRecognizer) {
         if selected != [-1,-1,-1] {
-            c.rotate(rType: !selectType, sender, sides: getVerticalSides(hPos: horizontal), selected: selected)
+            c.rotate(!selectType, sender, currentSide, selected)
             collectionView.reloadData()
         }
     }
     @IBAction func left_swipe_action(_ sender: UISwipeGestureRecognizer) {
         print("current side: \(currentSide)")
         if selected != [-1,-1,-1] {
-            c.rotate(rType: !selectType, sender, sides: getHorizontalSides(vPos: vertical), selected: selected)
+            c.rotate(!selectType, sender, currentSide, selected)
             collectionView.reloadData()
         }
     }
     @IBAction func right_swipe_action(_ sender: UISwipeGestureRecognizer) {
         if selected != [-1,-1,-1] {
-            c.rotate(rType: !selectType, sender, sides: getHorizontalSides(vPos: vertical), selected: selected)
+            c.rotate(!selectType, sender, currentSide, selected)
             collectionView.reloadData()
         }
         

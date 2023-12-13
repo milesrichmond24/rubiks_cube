@@ -22,83 +22,130 @@ struct Cube {
         print("Cube Initialized")
     }
     
-    mutating func rotate(rType row: Bool, _ sender: UISwipeGestureRecognizer, sides: [Int], selected: [Int]) {
-        if(row) {
-            var tempArr: [Int] = [Int]()
-            for x in sides {
-                print("side included: \(x)")
-                for y in selected {
-                    print("selected side: \(y)")
-                    tempArr.append(state[x][y])
-                    
-                }
-            }
-            print("tempArr: \(tempArr)")
-            
-            print("state:")
-            print("side1: \(state[0])")
-            print("side2: \(state[1])")
-            print("side3: \(state[2])")
-            print("side4: \(state[3])")
-            print("side5: \(state[4])")
-            print("side6: \(state[5])")
-            
+    mutating func rotate(_ isRow: Bool, _ sender: UISwipeGestureRecognizer, _ currentSide: Int, _ selected: [Int]) {
+        if(isRow) {
             switch(sender.direction) {
             case .left:
-                var tempArr2 = [Int]()
-                for x in 0..<sides.count {
-                    for y in 0..<selected.count {
-                        if((x + 1) * 3 + y >= tempArr.count) {
-                            state[sides[x]][selected[y]] = tempArr[y]
-                            tempArr2.append(tempArr[y])
-                        } else {
-                            //state[sides[x][selected[y]]] = tempArr[(x + 1) * 3 + y]
-                            //tempArr2.append(tempArr[(x+1) * 3 + y])
-                        }
-                        
-                    }
-                }
-                print("tempArr2: \(tempArr2)")
-                
-                print("state:")
-                print("side1: \(state[0])")
-                print("side2: \(state[1])")
-                print("side3: \(state[2])")
-                print("side4: \(state[3])")
-                print("side5: \(state[4])")
-                print("side6: \(state[5])")
+                shiftLeft(currentSide, selected, isRow)
             case .right:
-                print("rotate right")
+                shiftRight(currentSide, selected, isRow)
             default:
                 print("invalid swipe")
             }
         } else {
             switch(sender.direction) {
             case .up:
-                print("rotate up")
-                var tempArr: [Int] = [Int]()
-                
-                for side in sides {
-                    for square in selected {
-                        tempArr.append(state[side][square])
-                    }
-                }
-                
-                for side in 0..<sides.count {
-                    for square in 0..<tempArr.count {
-                        if(side == sides.count - 1) {
-                            state[sides[0]] = tempArr[square]
-                        } else {
-                            state[sides[side + 1]] = tempArr[square]
-                        }
-                    }
-                }
+                shiftUp(currentSide, selected, isRow)
             case .down:
-                print("rotate down")
+                shiftDown(currentSide, selected, isRow)
             default:
                 print("invalid swipe")
             }
         }
+    }
+    
+    func mapHorizontalSides(_ currentSide: Int) -> [Int] {
+      switch(currentSide) {
+      case 0:
+          return [0,5,2,4]
+      case 1:
+          return [1,5,3,4]
+      case 2:
+          return [2,4,0,5]
+      case 3:
+          return [3,4,1,5]
+      case 4:
+          return [4,0,5,2]
+      case 5:
+          return [5,2,4,0]
+      default:
+          print("err")
+          return []
+      }
+    }
+
+    func mapVerticalSides(_ currentSide: Int) -> [Int] {
+      switch(currentSide) {
+        case 0:
+          return [0,3,2,1]
+        case 1:
+          return [1,2,3,0]
+        case 2:
+          return [2,3,0,1]
+        case 3:
+          return [3,1,0,2]
+        default:
+          print("err")
+          return []
+      }
+    }
+
+    mutating func shiftRight(_ currentSide: Int, _ selected: [Int], _ isRow: Bool) {
+      let sideList = mapHorizontalSides(currentSide)
+      let original = state
+      
+      for side in 0..<sideList.count {
+        print("side: \(side)")
+        for square in selected {
+          print("sd:\(side)  sq:\(square)")
+          if(side == 0) {
+            state[sideList[side]][square] = original[sideList[sideList.count - 1]][square]
+            continue
+          }
+          state[sideList[side]][square] = original[sideList[side - 1]][square]
+        }
+      }
+    }
+
+    mutating func shiftLeft(_ currentSide: Int, _ selected: [Int], _ isRow: Bool) {
+      let sideList = mapHorizontalSides(currentSide)
+      let original = state
+
+      for side in 0..<sideList.count {
+        print("side: \(side)")
+        for square in selected {
+          print("sd:\(side)  sq:\(square)")
+          if(side == sideList.count - 1) {
+            state[sideList[side]][square] = original[sideList[0]][square]
+            continue
+          }
+          state[sideList[side]][square] = original[sideList[side + 1]][square]
+        }
+      }
+    }
+
+    mutating func shiftUp(_ currentSide: Int, _ selected: [Int], _ isRow: Bool) {
+      let sideList = mapVerticalSides(currentSide)
+      let original = state
+
+      for side in 0..<sideList.count {
+        print("side: \(side)")
+        for square in selected {
+          print("sd:\(side)  sq:\(square)")
+          if(side == sideList.count - 1) {
+            state[sideList[side]][square] = original[sideList[0]][square]
+            continue
+          }
+          state[sideList[side]][square] = original[sideList[side + 1]][square]
+        }
+      }
+    }
+
+    mutating func shiftDown(_ currentSide: Int, _ selected: [Int], _ isRow: Bool) {
+      let sideList = mapVerticalSides(currentSide)
+      let original = state
+
+      for side in 0..<sideList.count {
+        print("side: \(side)")
+        for square in selected {
+          print("sd:\(side)  sq:\(square)")
+          if(side == 0) {
+            state[sideList[side]][square] = original[sideList[sideList.count - 1]][square]
+            continue
+          }
+          state[sideList[side]][square] = original[sideList[side - 1]][square]
+        }
+      }
     }
     
     func doRotation() {
