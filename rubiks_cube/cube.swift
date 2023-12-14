@@ -47,17 +47,17 @@ struct Cube {
     func mapHorizontalSides(_ currentSide: Int) -> [Int] {
       switch(currentSide) {
       case 0:
-          return [0,5,2,4]
+          return [0,2,3,4]
       case 1:
-          return [1,5,3,4]
+          return [1,2,5,4]
       case 2:
-          return [2,4,0,5]
+          return [2,5,4,1]
       case 3:
-          return [3,4,1,5]
+          return [3,4,0,2]
       case 4:
-          return [4,0,5,2]
+          return [4,1,2,5]
       case 5:
-          return [5,2,4,0]
+          return [5,4,1,2]
       default:
           print("err")
           return []
@@ -65,16 +65,21 @@ struct Cube {
     }
 
     func mapVerticalSides(_ currentSide: Int) -> [Int] {
-      switch(currentSide) {
-        case 0:
-          return [0,3,2,1]
-        case 1:
-          return [1,2,3,0]
-        case 2:
-          return [2,3,0,1]
-        case 3:
-          return [3,1,0,2]
-        default:
+      print("as: \(currentSide)")
+        switch(currentSide) {
+      case 0:
+          return [0,1,3,5]
+      case 1:
+          return [1,3,5,0]
+      case 2:
+          return [2,5,4,1]
+      case 3:
+          return [3,5,0,1]
+      case 4:
+          return [4,1,2,5]
+      case 5:
+            return [5,0,1,3]
+      default:
           print("err")
           return []
       }
@@ -83,18 +88,27 @@ struct Cube {
     mutating func shiftRight(_ currentSide: Int, _ selected: [Int], _ isRow: Bool) {
       let sideList = mapHorizontalSides(currentSide)
       let original = state
+        var tempSelected = [0,selected[1],0]
       
-      for side in 0..<sideList.count {
-        print("side: \(side)")
-        for square in selected {
-          print("sd:\(side)  sq:\(square)")
-          if(side == 0) {
-            state[sideList[side]][square] = original[sideList[sideList.count - 1]][square]
-            continue
-          }
-          state[sideList[side]][square] = original[sideList[side - 1]][square]
+        if(currentSide == 1 || currentSide == 5) {
+            
+        } else if(currentSide == 2 || currentSide == 4) {
+            
         }
-      }
+        
+        for side in 0..<sideList.count {
+          print("side: \(side)")
+          for square in tempSelected {
+            print("sd:\(side)  sq:\(square)")
+            if(side == 0) {
+              state[sideList[side]][square] = original[sideList[sideList.count - 1]][square]
+              continue
+            }
+            state[sideList[side]][square] = original[sideList[side - 1]][square]
+          }
+        }
+        
+      
     }
 
     mutating func shiftLeft(_ currentSide: Int, _ selected: [Int], _ isRow: Bool) {
@@ -148,7 +162,7 @@ struct Cube {
       }
     }
     
-    func doRotation() {
+    func clearSelection() {
         
     }
 }

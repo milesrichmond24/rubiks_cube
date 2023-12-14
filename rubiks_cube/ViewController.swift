@@ -12,12 +12,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var collectionView: UICollectionView!
     
     var currentSide: Int = 0
-    var vertical: Int = 0
-    var horizontal: Int = 0
+
     var selected: [Int] = [-1,-1,-1]
     var selectType: Bool = true
-    
-    var configuringSide = 0
     
     var c = Cube(6,3,3)
     
@@ -30,6 +27,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         5 : UIColor.magenta
     ]
     
+    let s0 = [0,1,2,9,10,11,18,19,20]
+    let s1 = [3,4,5,12,13,14,21,22,23]
+    let s2 = [27,28,29,36,37,38,45,46,47]
+    let s3 = [30,31,32,39,40,41,48,49,50]
+    let s4 = [33,34,35,42,43,44,51,52,53]
+    let s5 = [56,57,58,65,66,67,74,75,76]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -41,98 +45,33 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func drawSide() {
-        currentSide = getIndex()
         collectionView.reloadData()
     }
     
-    @IBAction func move_up(_ sender: UIButton) {
-        if(vertical >= 3) {
-            vertical = 0
-        } else {
-            vertical+=1
-        }
-        
-        drawSide()
-    }
-    @IBAction func move_down(_ sender: UIButton) {
-        if(vertical <= 0) {
-            vertical = 3
-        } else {
-            vertical-=1
-        }
-        
-        drawSide()
-    }
-    @IBAction func move_left(_ sender: UIButton) {
-        if(horizontal <= 0) {
-            horizontal = 3
-        } else {
-            horizontal-=1
-        }
-        
-        print(horizontal)
-        
-        drawSide()
-    }
-    @IBAction func move_right(_ sender: UIButton) {
-        if(horizontal >= 3) {
-            horizontal = 0
-        } else {
-            horizontal+=1
-        }
-        
-        drawSide()
-    }
-    
-    // Keeps a map of things in space
-    // Not something that can be easily expanded in the future
-    // Returns the index with the data of the side shown
-    func getIndex() -> Int {
-        let getRow = { (hPos: Int) -> [Int] in
-            switch hPos {
-            case 0: return [0,1,2,3]
-            case 1: return [5,1,4,3]
-            case 2: return [2,1,0,3]
-            case 3: return [4,1,5,3]
-            default: return [0,0,0,0]
-            }
-        }
-        
-        return getRow(horizontal)[vertical]
-    }
-    
-    // Gets the sides along the horizontal (right, back, left)
-    func getHorizontalSides(vPos: Int) -> [Int] {
-        switch vPos {
-        case 0: return [4,0,5,2]
-        case 1: return [0,1,2,1]
-        case 2: return [5,1,4,0]
-        case 3: return [3,3,3,3]
-        default: return [0,0,0,0]
-        }
-    }
-    
-    // Gets the sides along the vertical (up, back, down)
-    func getVerticalSides(hPos: Int) -> [Int] {
-        switch hPos {
-        case 0: return [4,1,5,3]
-        case 1: return [0,1,2,3]
-        case 2: return [5,1,4,3]
-        case 3: return [2,1,0,3]
-        default: return [0,0,0,0]
-        }
-    }
-    
     func selectSquares(indexPath: IndexPath) {
+        if(s0.contains(indexPath.row)) {
+            currentSide = 0
+        } else if(s1.contains(indexPath.row)) {
+            currentSide = 1
+        } else if(s2.contains(indexPath.row)) {
+            currentSide = 2
+        } else if(s3.contains(indexPath.row)) {
+            currentSide = 3
+        } else if(s4.contains(indexPath.row)) {
+            currentSide = 4
+        } else if(s5.contains(indexPath.row)) {
+            currentSide = 5
+        }
+        
         let previous = selected
         print(indexPath.row % 3)
         if(selectType) {
-            if(indexPath.row + 3 > 8) {
-                selected = [indexPath.row - 6, indexPath.row - 3, indexPath.row]
-            } else if(indexPath.row - 3 < 0) {
-                selected = [indexPath.row, indexPath.row + 3, indexPath.row + 6]
+            if(indexPath.row / 9 % 3 == 2) {
+                selected = [indexPath.row - 18, indexPath.row - 9, indexPath.row]
+            } else if(indexPath.row / 9 % 3 == 0) {
+                selected = [indexPath.row, indexPath.row + 9, indexPath.row + 18]
             } else {
-                selected = [indexPath.row - 3, indexPath.row, indexPath.row + 3]
+                selected = [indexPath.row - 9, indexPath.row, indexPath.row + 9]
             }
         } else {
             if(indexPath.row % 3 >= 2) {
@@ -151,47 +90,33 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return 81
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let square = collectionView.dequeueReusableCell(withReuseIdentifier: "square", for: indexPath) as! CubeSquare
-        
-        switch(indexPath.row) {
-        case 0:
-            square.setColors(c.state[0])
-            print("0")
-        case 1:
-            square.setColors(c.state[1])
-            print("1")
-        case 2:
+        let empty1 = [6,7,8,15,16,17,24,25,26]
+        let empty2 = [54,55,56,63,64,65,72,73,74]
+        let empty3 = [60,61,62,69,70,71,78,79,80]
+
+        if(empty1.contains(indexPath.row) || empty2.contains(indexPath.row) || empty3.contains(indexPath.row)) {
             square.clearColors()
-            print("2")
-            return square
-        case 3:
-            square.setColors(c.state[2])
-            print("3")
-        case 4:
-            square.setColors(c.state[3])
-            print("4")
-        case 5:
-            square.setColors(c.state[4])
-            print("5")
-        case 6:
-            square.clearColors()
-            print("6")
-        case 7:
-            square.setColors(c.state[5])
-            print("7")
-        case 8:
-            square.clearColors()
-            print("8")
-        default:
-            print("this shouldnt happen")
+        } else {
+            
+            if(s0.contains(indexPath.row)) {
+                square.setColors(c.state[0][s0.firstIndex(of: indexPath.row)!])
+            } else if(s1.contains(indexPath.row)) {
+                square.setColors(c.state[1][s1.firstIndex(of: indexPath.row)!])
+            } else if(s2.contains(indexPath.row)) {
+                square.setColors(c.state[2][s2.firstIndex(of: indexPath.row)!])
+            } else if(s3.contains(indexPath.row)) {
+                square.setColors(c.state[3][s3.firstIndex(of: indexPath.row)!])
+            } else if(s4.contains(indexPath.row)) {
+                square.setColors(c.state[4][s4.firstIndex(of: indexPath.row)!])
+            } else if(s5.contains(indexPath.row)) {
+                square.setColors(c.state[5][s5.firstIndex(of: indexPath.row)!])
+            }
         }
-        
-        
-        
         
         if(selected.contains(indexPath.row)) {
             square.select(indexPath.row)
@@ -202,7 +127,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.bounds.width / 3, height: collectionView.bounds.width / 3)
+        CGSize(width: collectionView.bounds.width / 9, height: collectionView.bounds.width / 9)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -216,33 +141,139 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectSquares(indexPath: indexPath)
         print("selected: \(selected)")
-        
-        
         self.collectionView.reloadData()
     }
+    
     @IBAction func up_swipe_action(_ sender: UISwipeGestureRecognizer) {
-        
         if selected != [-1,-1,-1] {
-            c.rotate(!selectType, sender, currentSide, selected)
+            var squareSelected = [0,0,0]
+            if(s0.contains(selected[0])) {
+                squareSelected[0] = s0.firstIndex(of: selected[0])!
+                squareSelected[1] = s0.firstIndex(of: selected[1])!
+                squareSelected[2] = s0.firstIndex(of: selected[2])!
+            } else if(s1.contains(selected[0])) {
+                squareSelected[0] = s1.firstIndex(of: selected[0])!
+                squareSelected[1] = s1.firstIndex(of: selected[1])!
+                squareSelected[2] = s1.firstIndex(of: selected[2])!
+            } else if(s2.contains(selected[0])) {
+                squareSelected[0] = s2.firstIndex(of: selected[0])!
+                squareSelected[1] = s2.firstIndex(of: selected[1])!
+                squareSelected[2] = s2.firstIndex(of: selected[2])!
+            } else if(s3.contains(selected[0])) {
+                squareSelected[0] = s3.firstIndex(of: selected[0])!
+                squareSelected[1] = s3.firstIndex(of: selected[1])!
+                squareSelected[2] = s3.firstIndex(of: selected[2])!
+            } else if(s4.contains(selected[0])) {
+                squareSelected[0] = s4.firstIndex(of: selected[0])!
+                squareSelected[1] = s4.firstIndex(of: selected[1])!
+                squareSelected[2] = s4.firstIndex(of: selected[2])!
+            } else if(s5.contains(selected[0])) {
+                squareSelected[0] = s0.firstIndex(of: selected[0])!
+                squareSelected[1] = s5.firstIndex(of: selected[1])!
+                squareSelected[2] = s5.firstIndex(of: selected[2])!
+            }
+
+            c.rotate(!selectType, sender, currentSide, squareSelected)
             collectionView.reloadData()
         }
     }
     @IBAction func down_swipe_action(_ sender: UISwipeGestureRecognizer) {
         if selected != [-1,-1,-1] {
-            c.rotate(!selectType, sender, currentSide, selected)
+            var squareSelected = [0,0,0]
+            if(s0.contains(selected[0])) {
+                squareSelected[0] = s0.firstIndex(of: selected[0])!
+                squareSelected[1] = s0.firstIndex(of: selected[1])!
+                squareSelected[2] = s0.firstIndex(of: selected[2])!
+            } else if(s1.contains(selected[0])) {
+                squareSelected[0] = s1.firstIndex(of: selected[0])!
+                squareSelected[1] = s1.firstIndex(of: selected[1])!
+                squareSelected[2] = s1.firstIndex(of: selected[2])!
+            } else if(s2.contains(selected[0])) {
+                squareSelected[0] = s2.firstIndex(of: selected[0])!
+                squareSelected[1] = s2.firstIndex(of: selected[1])!
+                squareSelected[2] = s2.firstIndex(of: selected[2])!
+            } else if(s3.contains(selected[0])) {
+                squareSelected[0] = s3.firstIndex(of: selected[0])!
+                squareSelected[1] = s3.firstIndex(of: selected[1])!
+                squareSelected[2] = s3.firstIndex(of: selected[2])!
+            } else if(s4.contains(selected[0])) {
+                squareSelected[0] = s4.firstIndex(of: selected[0])!
+                squareSelected[1] = s4.firstIndex(of: selected[1])!
+                squareSelected[2] = s4.firstIndex(of: selected[2])!
+            } else if(s5.contains(selected[0])) {
+                squareSelected[0] = s0.firstIndex(of: selected[0])!
+                squareSelected[1] = s5.firstIndex(of: selected[1])!
+                squareSelected[2] = s5.firstIndex(of: selected[2])!
+            }
+
+            c.rotate(!selectType, sender, currentSide, squareSelected)
             collectionView.reloadData()
         }
     }
     @IBAction func left_swipe_action(_ sender: UISwipeGestureRecognizer) {
         print("current side: \(currentSide)")
         if selected != [-1,-1,-1] {
-            c.rotate(!selectType, sender, currentSide, selected)
+            var squareSelected = [0,0,0]
+            if(s0.contains(selected[0])) {
+                squareSelected[0] = s0.firstIndex(of: selected[0])!
+                squareSelected[1] = s0.firstIndex(of: selected[1])!
+                squareSelected[2] = s0.firstIndex(of: selected[2])!
+            } else if(s1.contains(selected[0])) {
+                squareSelected[0] = s1.firstIndex(of: selected[0])!
+                squareSelected[1] = s1.firstIndex(of: selected[1])!
+                squareSelected[2] = s1.firstIndex(of: selected[2])!
+            } else if(s2.contains(selected[0])) {
+                squareSelected[0] = s2.firstIndex(of: selected[0])!
+                squareSelected[1] = s2.firstIndex(of: selected[1])!
+                squareSelected[2] = s2.firstIndex(of: selected[2])!
+            } else if(s3.contains(selected[0])) {
+                squareSelected[0] = s3.firstIndex(of: selected[0])!
+                squareSelected[1] = s3.firstIndex(of: selected[1])!
+                squareSelected[2] = s3.firstIndex(of: selected[2])!
+            } else if(s4.contains(selected[0])) {
+                squareSelected[0] = s4.firstIndex(of: selected[0])!
+                squareSelected[1] = s4.firstIndex(of: selected[1])!
+                squareSelected[2] = s4.firstIndex(of: selected[2])!
+            } else if(s5.contains(selected[0])) {
+                squareSelected[0] = s0.firstIndex(of: selected[0])!
+                squareSelected[1] = s5.firstIndex(of: selected[1])!
+                squareSelected[2] = s5.firstIndex(of: selected[2])!
+            }
+
+            c.rotate(!selectType, sender, currentSide, squareSelected)
             collectionView.reloadData()
         }
     }
     @IBAction func right_swipe_action(_ sender: UISwipeGestureRecognizer) {
         if selected != [-1,-1,-1] {
-            c.rotate(!selectType, sender, currentSide, selected)
+            var squareSelected = [0,0,0]
+            if(s0.contains(selected[0])) {
+                squareSelected[0] = s0.firstIndex(of: selected[0])!
+                squareSelected[1] = s0.firstIndex(of: selected[1])!
+                squareSelected[2] = s0.firstIndex(of: selected[2])!
+            } else if(s1.contains(selected[0])) {
+                squareSelected[0] = s1.firstIndex(of: selected[0])!
+                squareSelected[1] = s1.firstIndex(of: selected[1])!
+                squareSelected[2] = s1.firstIndex(of: selected[2])!
+            } else if(s2.contains(selected[0])) {
+                squareSelected[0] = s2.firstIndex(of: selected[0])!
+                squareSelected[1] = s2.firstIndex(of: selected[1])!
+                squareSelected[2] = s2.firstIndex(of: selected[2])!
+            } else if(s3.contains(selected[0])) {
+                squareSelected[0] = s3.firstIndex(of: selected[0])!
+                squareSelected[1] = s3.firstIndex(of: selected[1])!
+                squareSelected[2] = s3.firstIndex(of: selected[2])!
+            } else if(s4.contains(selected[0])) {
+                squareSelected[0] = s4.firstIndex(of: selected[0])!
+                squareSelected[1] = s4.firstIndex(of: selected[1])!
+                squareSelected[2] = s4.firstIndex(of: selected[2])!
+            } else if(s5.contains(selected[0])) {
+                squareSelected[0] = s0.firstIndex(of: selected[0])!
+                squareSelected[1] = s5.firstIndex(of: selected[1])!
+                squareSelected[2] = s5.firstIndex(of: selected[2])!
+            }
+
+            c.rotate(!selectType, sender, currentSide, squareSelected)
             collectionView.reloadData()
         }
         
