@@ -268,7 +268,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 squareSelected[1] = s4.firstIndex(of: selected[1])!
                 squareSelected[2] = s4.firstIndex(of: selected[2])!
             } else if(s5.contains(selected[0])) {
-                squareSelected[0] = s0.firstIndex(of: selected[0])!
+                squareSelected[0] = s5.firstIndex(of: selected[0])!
                 squareSelected[1] = s5.firstIndex(of: selected[1])!
                 squareSelected[2] = s5.firstIndex(of: selected[2])!
             }
