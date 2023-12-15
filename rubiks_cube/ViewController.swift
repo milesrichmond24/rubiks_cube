@@ -71,11 +71,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func selectSquares(indexPath: IndexPath) {
-        if(!(s3.contains(indexPath.row) || ((s1.suffix(3).contains(indexPath.row) || s1.prefix(3).contains(indexPath.row))) || ((s2select1.contains(indexPath.row) || s2select2.contains(indexPath.row))) || ((s4select1.contains(indexPath.row) || s4select2.contains(indexPath.row))) || ((s5.prefix(upTo: 3).contains(indexPath.row) || s5.prefix(upTo: 3).contains(indexPath.row))))) {
+        if(!(s3.contains(indexPath.row) || ((s1.suffix(3).contains(indexPath.row) || s1.prefix(3).contains(indexPath.row))) || ((s2select1.contains(indexPath.row) || s2select2.contains(indexPath.row))) || ((s4select1.contains(indexPath.row) || s4select2.contains(indexPath.row))) || ((s5.prefix(upTo: 3).contains(indexPath.row) || s5.suffix(3).contains(indexPath.row))))) {
             return
         }
         
-        if((((s1.suffix(3).contains(indexPath.row) || s1.prefix(3).contains(indexPath.row)) && selectType) || ((s2select1.contains(indexPath.row) || s2select2.contains(indexPath.row)) && !selectType) || ((s4select1.contains(indexPath.row) || s4select2.contains(indexPath.row)) && !selectType) || ((s5.prefix(upTo: 3).contains(indexPath.row) || s5.prefix(upTo: 3).contains(indexPath.row)) && selectType))) {
+        if((((s1.suffix(3).contains(indexPath.row) || s1.prefix(3).contains(indexPath.row)) && selectType) || ((s2select1.contains(indexPath.row) || s2select2.contains(indexPath.row)) && !selectType) || ((s4select1.contains(indexPath.row) || s4select2.contains(indexPath.row)) && !selectType) || ((s5.prefix(upTo: 3).contains(indexPath.row) || s5.suffix(3).contains(indexPath.row)) && selectType))) {
             selectType = !selectType
         }
         
@@ -139,6 +139,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         } else {
             square.clearSelect(indexPath.row)
         }
+        
         return square
     }
     
