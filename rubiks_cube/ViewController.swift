@@ -32,7 +32,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     let s2 = [27,28,29,36,37,38,45,46,47]
     let s3 = [30,31,32,39,40,41,48,49,50]
     let s4 = [33,34,35,42,43,44,51,52,53]
-    let s5 = [56,57,58,65,66,67,74,75,76]
+    let s5 = [57,58,59,66,67,68,75,76,77]
     
     override func viewDidLoad() {
         super.viewDidLoad()

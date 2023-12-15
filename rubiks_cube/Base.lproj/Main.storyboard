@@ -23,27 +23,11 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zth-NW-JiF">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="89.5"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HCN-fs-0nV">
-                                        <rect key="frame" x="0.0" y="89.5" width="414" height="45"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="^"/>
-                                        <connections>
-                                            <action selector="move_up:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b97-hS-yl8"/>
-                                        </connections>
-                                    </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GsY-Lz-kAQ">
-                                        <rect key="frame" x="0.0" y="134.5" width="414" height="627"/>
+                                        <rect key="frame" x="0.0" y="89.5" width="414" height="717"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPo-Hg-kY1">
-                                                <rect key="frame" x="0.0" y="0.0" width="41.5" height="627"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="&lt;"/>
-                                                <connections>
-                                                    <action selector="move_left:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QxC-ZP-izM"/>
-                                                </connections>
-                                            </button>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KUY-n9-sU6">
-                                                <rect key="frame" x="41.5" y="0.0" width="331" height="627"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="717"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vjA-zg-chi">
                                                     <size key="itemSize" width="128" height="128"/>
@@ -60,7 +44,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="capsule.inset.filled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XoC-6s-jzc">
-                                                                    <rect key="frame" x="-0.5" y="0.0" width="128" height="126.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.5" width="128" height="126.5"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <gestureRecognizers/>
@@ -78,38 +62,18 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QrK-yZ-owA">
-                                                <rect key="frame" x="372.5" y="0.0" width="41.5" height="627"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="&gt;"/>
-                                                <connections>
-                                                    <action selector="move_right:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W5m-6U-P8U"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="KUY-n9-sU6" firstAttribute="centerY" secondItem="GsY-Lz-kAQ" secondAttribute="centerY" id="Lha-YR-u5L"/>
-                                            <constraint firstItem="cPo-Hg-kY1" firstAttribute="width" secondItem="QrK-yZ-owA" secondAttribute="width" id="TUi-Hr-vKv"/>
-                                            <constraint firstItem="cPo-Hg-kY1" firstAttribute="width" secondItem="GsY-Lz-kAQ" secondAttribute="width" multiplier="0.1" id="meH-na-QZW"/>
-                                            <constraint firstItem="KUY-n9-sU6" firstAttribute="width" secondItem="GsY-Lz-kAQ" secondAttribute="width" multiplier="0.8" id="qF4-f5-hg8"/>
+                                            <constraint firstItem="KUY-n9-sU6" firstAttribute="width" secondItem="GsY-Lz-kAQ" secondAttribute="width" id="qF4-f5-hg8"/>
                                         </constraints>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7R-t2-AEd">
-                                        <rect key="frame" x="0.0" y="761.5" width="414" height="45"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="v"/>
-                                        <connections>
-                                            <action selector="move_down:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aNB-0J-cPs"/>
-                                        </connections>
-                                    </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yED-0o-2yJ">
                                         <rect key="frame" x="0.0" y="806.5" width="414" height="89.5"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="u7R-t2-AEd" firstAttribute="height" secondItem="FCL-At-ATF" secondAttribute="height" multiplier="0.05" id="40P-kC-OAK"/>
                                     <constraint firstItem="Zth-NW-JiF" firstAttribute="height" secondItem="yED-0o-2yJ" secondAttribute="height" id="JYx-bi-Ad2"/>
-                                    <constraint firstItem="HCN-fs-0nV" firstAttribute="height" secondItem="FCL-At-ATF" secondAttribute="height" multiplier="0.05" id="XYL-cW-hjE"/>
                                     <constraint firstItem="Zth-NW-JiF" firstAttribute="height" secondItem="FCL-At-ATF" secondAttribute="height" multiplier="0.1" id="mDJ-0p-ZKb"/>
                                 </constraints>
                             </stackView>
