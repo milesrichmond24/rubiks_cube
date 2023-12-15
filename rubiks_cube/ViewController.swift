@@ -51,8 +51,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     let s4 = [33,34,35,42,43,44,51,52,53]
     let s5 = [57,58,59,66,67,68,75,76,77]
     
-    let s2select = [29,38,47]
-    let s4select = [33,42,51]
+    let s2select1 = [29,38,47]
+    let s2select2 = [27,36,45]
+    let s4select1 = [33,42,51]
+    let s4select2 = [35,44,53]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,8 +71,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func selectSquares(indexPath: IndexPath) {
-        if(!s3.contains(indexPath.row)) {
+        if(!(s3.contains(indexPath.row) || ((s1.suffix(3).contains(indexPath.row) || s1.prefix(3).contains(indexPath.row))) || ((s2select1.contains(indexPath.row) || s2select2.contains(indexPath.row))) || ((s4select1.contains(indexPath.row) || s4select2.contains(indexPath.row))) || ((s5.prefix(upTo: 3).contains(indexPath.row) || s5.prefix(upTo: 3).contains(indexPath.row))))) {
             return
+        }
+        
+        if((((s1.suffix(3).contains(indexPath.row) || s1.prefix(3).contains(indexPath.row)) && selectType) || ((s2select1.contains(indexPath.row) || s2select2.contains(indexPath.row)) && !selectType) || ((s4select1.contains(indexPath.row) || s4select2.contains(indexPath.row)) && !selectType) || ((s5.prefix(upTo: 3).contains(indexPath.row) || s5.prefix(upTo: 3).contains(indexPath.row)) && selectType))) {
+            selectType = !selectType
         }
         
         let previous = selected
@@ -162,6 +168,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 squareSelected[0] = s0.firstIndex(of: selected[0])!
                 squareSelected[1] = s0.firstIndex(of: selected[1])!
                 squareSelected[2] = s0.firstIndex(of: selected[2])!
+            } else if(s1.suffix(3).contains(selected[0]) || s1.prefix(3).contains(selected[0])) {
+                squareSelected[0] = s3.firstIndex(of: selected[0])!
+                squareSelected[1] = s3.firstIndex(of: selected[1])!
+                squareSelected[2] = s3.firstIndex(of: selected[2])!
+            } else if(s2select1.contains(selected[0]) || s2select2.contains(selected[0])) {
+                squareSelected[0] = s2.firstIndex(of: selected[0])!
+                squareSelected[1] = s2.firstIndex(of: selected[1])!
+                squareSelected[2] = s2.firstIndex(of: selected[2])!
+            } else if(s4select1.contains(selected[0]) || s4select1.contains(selected[0])) {
+                squareSelected[0] = s4.firstIndex(of: selected[0])!
+                squareSelected[1] = s4.firstIndex(of: selected[1])!
+                squareSelected[2] = s4.firstIndex(of: selected[2])!
+            } else if(s5.prefix(upTo: 3).contains(selected[0]) || s5.suffix(3).contains(selected[0])) {
+                squareSelected[0] = s5.firstIndex(of: selected[0])!
+                squareSelected[1] = s5.firstIndex(of: selected[1])!
+                squareSelected[2] = s5.firstIndex(of: selected[2])!
             } else {
                 squareSelected[0] = s3.firstIndex(of: selected[0])!
                 squareSelected[1] = s3.firstIndex(of: selected[1])!
@@ -181,14 +203,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 squareSelected[0] = s0.firstIndex(of: selected[0])!
                 squareSelected[1] = s0.firstIndex(of: selected[1])!
                 squareSelected[2] = s0.firstIndex(of: selected[2])!
-            } else if(s1.suffix(3).contains(selected[0])) {
-            
-            } else if(s2select.contains(selected[0])) {
-                
-            } else if(s4select.contains(selected[0])) {
-                
-            } else if(s5.prefix(upTo: 3).contains(selected[0])) {
-                
+            } else if(s1.suffix(3).contains(selected[0]) || s1.prefix(3).contains(selected[0])) {
+                squareSelected[0] = s3.firstIndex(of: selected[0])!
+                squareSelected[1] = s3.firstIndex(of: selected[1])!
+                squareSelected[2] = s3.firstIndex(of: selected[2])!
+            } else if(s2select1.contains(selected[0]) || s2select2.contains(selected[0])) {
+                squareSelected[0] = s2.firstIndex(of: selected[0])!
+                squareSelected[1] = s2.firstIndex(of: selected[1])!
+                squareSelected[2] = s2.firstIndex(of: selected[2])!
+            } else if(s4select1.contains(selected[0]) || s4select1.contains(selected[0])) {
+                squareSelected[0] = s4.firstIndex(of: selected[0])!
+                squareSelected[1] = s4.firstIndex(of: selected[1])!
+                squareSelected[2] = s4.firstIndex(of: selected[2])!
+            } else if(s5.prefix(upTo: 3).contains(selected[0]) || s5.suffix(3).contains(selected[0])) {
+                squareSelected[0] = s5.firstIndex(of: selected[0])!
+                squareSelected[1] = s5.firstIndex(of: selected[1])!
+                squareSelected[2] = s5.firstIndex(of: selected[2])!
             } else {
                 squareSelected[0] = s3.firstIndex(of: selected[0])!
                 squareSelected[1] = s3.firstIndex(of: selected[1])!
@@ -208,12 +238,27 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 squareSelected[0] = s0.firstIndex(of: selected[0])!
                 squareSelected[1] = s0.firstIndex(of: selected[1])!
                 squareSelected[2] = s0.firstIndex(of: selected[2])!
+            } else if(s1.suffix(3).contains(selected[0]) || s1.prefix(3).contains(selected[0])) {
+                squareSelected[0] = s3.firstIndex(of: selected[0])!
+                squareSelected[1] = s3.firstIndex(of: selected[1])!
+                squareSelected[2] = s3.firstIndex(of: selected[2])!
+            } else if(s2select1.contains(selected[0]) || s2select2.contains(selected[0])) {
+                squareSelected[0] = s2.firstIndex(of: selected[0])!
+                squareSelected[1] = s2.firstIndex(of: selected[1])!
+                squareSelected[2] = s2.firstIndex(of: selected[2])!
+            } else if(s4select1.contains(selected[0]) || s4select1.contains(selected[0])) {
+                squareSelected[0] = s4.firstIndex(of: selected[0])!
+                squareSelected[1] = s4.firstIndex(of: selected[1])!
+                squareSelected[2] = s4.firstIndex(of: selected[2])!
+            } else if(s5.prefix(upTo: 3).contains(selected[0]) || s5.suffix(3).contains(selected[0])) {
+                squareSelected[0] = s5.firstIndex(of: selected[0])!
+                squareSelected[1] = s5.firstIndex(of: selected[1])!
+                squareSelected[2] = s5.firstIndex(of: selected[2])!
             } else {
                 squareSelected[0] = s3.firstIndex(of: selected[0])!
                 squareSelected[1] = s3.firstIndex(of: selected[1])!
                 squareSelected[2] = s3.firstIndex(of: selected[2])!
             }
-            
 
             c.rotate(!selectType, sender, currentSide, squareSelected)
             collectionView.reloadData()
@@ -227,6 +272,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 squareSelected[0] = s0.firstIndex(of: selected[0])!
                 squareSelected[1] = s0.firstIndex(of: selected[1])!
                 squareSelected[2] = s0.firstIndex(of: selected[2])!
+            } else if(s1.suffix(3).contains(selected[0]) || s1.prefix(3).contains(selected[0])) {
+                squareSelected[0] = s3.firstIndex(of: selected[0])!
+                squareSelected[1] = s3.firstIndex(of: selected[1])!
+                squareSelected[2] = s3.firstIndex(of: selected[2])!
+            } else if(s2select1.contains(selected[0]) || s2select2.contains(selected[0])) {
+                squareSelected[0] = s2.firstIndex(of: selected[0])!
+                squareSelected[1] = s2.firstIndex(of: selected[1])!
+                squareSelected[2] = s2.firstIndex(of: selected[2])!
+            } else if(s4select1.contains(selected[0]) || s4select1.contains(selected[0])) {
+                squareSelected[0] = s4.firstIndex(of: selected[0])!
+                squareSelected[1] = s4.firstIndex(of: selected[1])!
+                squareSelected[2] = s4.firstIndex(of: selected[2])!
+            } else if(s5.prefix(upTo: 3).contains(selected[0]) || s5.suffix(3).contains(selected[0])) {
+                squareSelected[0] = s5.firstIndex(of: selected[0])!
+                squareSelected[1] = s5.firstIndex(of: selected[1])!
+                squareSelected[2] = s5.firstIndex(of: selected[2])!
             } else {
                 squareSelected[0] = s3.firstIndex(of: selected[0])!
                 squareSelected[1] = s3.firstIndex(of: selected[1])!

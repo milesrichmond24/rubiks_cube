@@ -11,11 +11,24 @@ import UIKit
 struct Cube {
     var state: [[Int]] = [[Int]]()
     
+    
+
+    
+    var colors = [1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,6]
+    
     init(_ sides: Int, _ rows: Int, _ cols: Int) {
         for side in 0..<sides {
             state.append([Int]())
             for _ in 0..<rows*cols {
-                    state[side].append(Int.random(in: 0..<6))
+                while(true) {
+                    let rand = Int.random(in: 0..<54)
+                    if  0 != colors[rand] {
+                        state[side].append(colors[rand] - 1)
+                        colors[rand] = 0
+                        break
+                    }
+                }
+                    //state[side].append(colors[Int.random(in: 0..<6)])
             }
         }
         
