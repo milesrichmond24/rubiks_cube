@@ -234,69 +234,75 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBAction func left_swipe_action(_ sender: UISwipeGestureRecognizer) {
         if selected != [-1,-1,-1] {
             var squareSelected = [0,0,0]
+            var side: Int
 
-            if(selected[0] < 21) {
-                squareSelected[0] = s0.firstIndex(of: selected[0])!
-                squareSelected[1] = s0.firstIndex(of: selected[1])!
-                squareSelected[2] = s0.firstIndex(of: selected[2])!
-            } else if(s1.suffix(3).contains(selected[0]) || s1.prefix(3).contains(selected[0])) {
-                squareSelected[0] = s3.firstIndex(of: selected[0])!
-                squareSelected[1] = s3.firstIndex(of: selected[1])!
-                squareSelected[2] = s3.firstIndex(of: selected[2])!
+            if(s1.suffix(3).contains(selected[0]) || s1.prefix(3).contains(selected[0])) {
+                squareSelected[0] = s1.firstIndex(of: selected[0])!
+                squareSelected[1] = s1.firstIndex(of: selected[1])!
+                squareSelected[2] = s1.firstIndex(of: selected[2])!
+                side = 1
             } else if(s2select1.contains(selected[0]) || s2select2.contains(selected[0])) {
                 squareSelected[0] = s2.firstIndex(of: selected[0])!
                 squareSelected[1] = s2.firstIndex(of: selected[1])!
                 squareSelected[2] = s2.firstIndex(of: selected[2])!
+                side = 2
             } else if(s4select1.contains(selected[0]) || s4select1.contains(selected[0])) {
                 squareSelected[0] = s4.firstIndex(of: selected[0])!
                 squareSelected[1] = s4.firstIndex(of: selected[1])!
                 squareSelected[2] = s4.firstIndex(of: selected[2])!
+                side = 4
             } else if(s5.prefix(upTo: 3).contains(selected[0]) || s5.suffix(3).contains(selected[0])) {
                 squareSelected[0] = s5.firstIndex(of: selected[0])!
                 squareSelected[1] = s5.firstIndex(of: selected[1])!
                 squareSelected[2] = s5.firstIndex(of: selected[2])!
+                side = 5
             } else {
                 squareSelected[0] = s3.firstIndex(of: selected[0])!
                 squareSelected[1] = s3.firstIndex(of: selected[1])!
                 squareSelected[2] = s3.firstIndex(of: selected[2])!
+                c.rotate(!selectType, sender, currentSide, squareSelected)
+                collectionView.reloadData()
+                return
             }
 
-            c.rotate(!selectType, sender, currentSide, squareSelected)
+            c.specialShiftLeft(side, squareSelected)
             collectionView.reloadData()
         }
     }
     @IBAction func right_swipe_action(_ sender: UISwipeGestureRecognizer) {
         if selected != [-1,-1,-1] {
             var squareSelected = [0,0,0]
-
-            if(selected[0] < 21) {
-                squareSelected[0] = s0.firstIndex(of: selected[0])!
-                squareSelected[1] = s0.firstIndex(of: selected[1])!
-                squareSelected[2] = s0.firstIndex(of: selected[2])!
-            } else if(s1.suffix(3).contains(selected[0]) || s1.prefix(3).contains(selected[0])) {
-                squareSelected[0] = s3.firstIndex(of: selected[0])!
-                squareSelected[1] = s3.firstIndex(of: selected[1])!
-                squareSelected[2] = s3.firstIndex(of: selected[2])!
+            var side: Int = 0
+            if(s1.suffix(3).contains(selected[0]) || s1.prefix(3).contains(selected[0])) {
+                squareSelected[0] = s1.firstIndex(of: selected[0])!
+                squareSelected[1] = s1.firstIndex(of: selected[1])!
+                squareSelected[2] = s1.firstIndex(of: selected[2])!
+                side = 1
             } else if(s2select1.contains(selected[0]) || s2select2.contains(selected[0])) {
                 squareSelected[0] = s2.firstIndex(of: selected[0])!
                 squareSelected[1] = s2.firstIndex(of: selected[1])!
                 squareSelected[2] = s2.firstIndex(of: selected[2])!
+                side = 2
             } else if(s4select1.contains(selected[0]) || s4select1.contains(selected[0])) {
                 squareSelected[0] = s4.firstIndex(of: selected[0])!
                 squareSelected[1] = s4.firstIndex(of: selected[1])!
                 squareSelected[2] = s4.firstIndex(of: selected[2])!
+                side = 4
             } else if(s5.prefix(upTo: 3).contains(selected[0]) || s5.suffix(3).contains(selected[0])) {
                 squareSelected[0] = s5.firstIndex(of: selected[0])!
                 squareSelected[1] = s5.firstIndex(of: selected[1])!
                 squareSelected[2] = s5.firstIndex(of: selected[2])!
+                side = 5
             } else {
                 squareSelected[0] = s3.firstIndex(of: selected[0])!
                 squareSelected[1] = s3.firstIndex(of: selected[1])!
                 squareSelected[2] = s3.firstIndex(of: selected[2])!
+                c.rotate(!selectType, sender, currentSide, squareSelected)
+                collectionView.reloadData()
+                return
             }
             
-
-            c.rotate(!selectType, sender, currentSide, squareSelected)
+            c.specialShiftRight(side, squareSelected)
             collectionView.reloadData()
         }
     }
