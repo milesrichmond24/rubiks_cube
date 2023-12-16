@@ -24,10 +24,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="89.5"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GsY-Lz-kAQ">
-                                        <rect key="frame" x="0.0" y="89.5" width="414" height="686"/>
+                                        <rect key="frame" x="0.0" y="89.5" width="414" height="537.5"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KUY-n9-sU6">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="537.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vjA-zg-chi">
                                                     <size key="itemSize" width="128" height="128"/>
@@ -69,10 +69,10 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wBw-k2-tHs">
-                                        <rect key="frame" x="0.0" y="775.5" width="414" height="31"/>
+                                        <rect key="frame" x="0.0" y="627" width="414" height="179.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZt-Ug-8FZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="207" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="207" height="179.5"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" title="Randomize"/>
                                                 <connections>
@@ -80,7 +80,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4n0-aU-THq">
-                                                <rect key="frame" x="207" y="0.0" width="207" height="31"/>
+                                                <rect key="frame" x="207" y="0.0" width="207" height="179.5"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" title="Done"/>
                                                 <connections>
@@ -94,6 +94,7 @@
                                     </imageView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="wBw-k2-tHs" firstAttribute="height" secondItem="FCL-At-ATF" secondAttribute="height" multiplier="0.2" id="AUO-Pk-eg3"/>
                                     <constraint firstItem="Zth-NW-JiF" firstAttribute="height" secondItem="yED-0o-2yJ" secondAttribute="height" id="JYx-bi-Ad2"/>
                                     <constraint firstItem="Zth-NW-JiF" firstAttribute="height" secondItem="FCL-At-ATF" secondAttribute="height" multiplier="0.1" id="mDJ-0p-ZKb"/>
                                 </constraints>
