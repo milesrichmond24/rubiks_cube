@@ -20,17 +20,17 @@ class CubeSquare: UICollectionViewCell, UIGestureRecognizerDelegate {
     }
     
     func select(_ selected: Int) {
-        s1.backgroundColor = UIColor.gray
+        s1.backgroundColor = UIColor.systemYellow
     }
     
     func clearSelect(_ selected: Int) {
-        s1.backgroundColor = UIColor.clear
+        s1.backgroundColor = backgroundColor
     }
     
     let colorMap: [Int:UIColor] = [
         0 : UIColor.red,
         1 : UIColor.blue,
-        2 : UIColor.brown,
+        2 : UIColor.orange,
         3 : UIColor.cyan,
         4 : UIColor.green,
         5 : UIColor.magenta

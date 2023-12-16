@@ -156,16 +156,95 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="dOJ-2c-3kL"/>
+                        <segue destination="GNC-RE-23D" kind="relationship" relationship="viewControllers" id="hnu-xg-JiQ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hzA-tA-gFO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="570" y="311"/>
         </scene>
+        <!--Time History-->
+        <scene sceneID="q2d-QU-GYi">
+            <objects>
+                <viewController id="GNC-RE-23D" customClass="HistoryViewController" customModule="rubiks_cube" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="keG-yU-7JW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uQ3-w0-0pr">
+                                <rect key="frame" x="0.0" y="40" width="414" height="717"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Phv-XY-iB7">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="179.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbd-Sd-WCa">
+                                                <rect key="frame" x="0.0" y="0.0" width="207" height="179.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsK-ce-eiM">
+                                                <rect key="frame" x="207" y="0.0" width="207" height="179.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="TVj-2E-JOx">
+                                        <rect key="frame" x="0.0" y="179.5" width="414" height="179"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rnO-hh-N5j">
+                                                <rect key="frame" x="0.0" y="0.0" width="207" height="179"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NiF-4B-bB6">
+                                                <rect key="frame" x="207" y="0.0" width="207" height="179"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Stopwatch-sketch-Sport-clock-icon-Dead-Graphics-38037055-1-580x387" translatesAutoresizingMaskIntoConstraints="NO" id="rtt-FF-0iF">
+                                        <rect key="frame" x="0.0" y="358.5" width="414" height="358.5"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="rtt-FF-0iF" firstAttribute="height" secondItem="uQ3-w0-0pr" secondAttribute="height" multiplier="0.5" id="HL0-09-teF"/>
+                                    <constraint firstItem="TVj-2E-JOx" firstAttribute="height" secondItem="Phv-XY-iB7" secondAttribute="height" id="ymR-f0-jhD"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iFE-gi-CvD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="uQ3-w0-0pr" firstAttribute="centerY" secondItem="iFE-gi-CvD" secondAttribute="centerY" constant="-30" id="Zkz-Tu-6bF"/>
+                            <constraint firstItem="uQ3-w0-0pr" firstAttribute="centerX" secondItem="iFE-gi-CvD" secondAttribute="centerX" id="fGh-ZT-KOc"/>
+                            <constraint firstItem="uQ3-w0-0pr" firstAttribute="width" secondItem="keG-yU-7JW" secondAttribute="width" id="jlh-QY-reU"/>
+                            <constraint firstItem="uQ3-w0-0pr" firstAttribute="height" secondItem="keG-yU-7JW" secondAttribute="height" multiplier="0.8" id="zt7-cD-LtP"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Time History" image="stopwatch.fill" catalog="system" id="ohm-eh-uTa"/>
+                    <connections>
+                        <outlet property="dateLast" destination="gsK-ce-eiM" id="4Ad-Xf-tfR"/>
+                        <outlet property="dateTop" destination="NiF-4B-bB6" id="YoS-bd-Ks1"/>
+                        <outlet property="timeLast" destination="Zbd-Sd-WCa" id="kr1-TK-whw"/>
+                        <outlet property="timeTop" destination="rnO-hh-N5j" id="0Jn-TP-mhc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kEy-W6-f2M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1690" y="615"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Stopwatch-sketch-Sport-clock-icon-Dead-Graphics-38037055-1-580x387" width="580" height="387"/>
         <image name="capsule.inset.filled" catalog="system" width="128" height="94"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="stopwatch.fill" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

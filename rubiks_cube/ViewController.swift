@@ -138,7 +138,21 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         if(selected.contains(indexPath.row)) {
             square.select(indexPath.row)
         } else {
-            square.clearSelect(indexPath.row)
+            if(s0.contains(indexPath.row)) {
+                square.s1.backgroundColor = UIColor.lightGray
+            } else if(s1.contains(indexPath.row)) {
+                square.s1.backgroundColor = UIColor.gray
+            } else if(s2.contains(indexPath.row)) {
+                square.s1.backgroundColor = UIColor.gray
+            } else if(s3.contains(indexPath.row)) {
+                square.s1.backgroundColor = UIColor.lightGray
+            } else if(s4.contains(indexPath.row)) {
+                square.s1.backgroundColor = UIColor.gray
+            } else if(s5.contains(indexPath.row)) {
+                square.s1.backgroundColor = UIColor.gray
+            } else {
+                square.s1.backgroundColor = UIColor.clear
+            }
         }
         
         return square
@@ -149,11 +163,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return -2.5
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return -3
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -302,12 +316,36 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBAction func randomizeCube(_ sender: UIButton) {
         c = Cube(6,3,3)
         timeStarted = Date.now
+        collectionView.reloadData()
     }
     
     @IBAction func finished(_ sender: UIButton) {
         if(c.isSolved()) {
-            let timeTaken = Calendar.current.dateComponents([.second], from: timeStarted, to: Date.now).second!
-            let ac = UIAlertController(title: "Congrats", message: "You comleted the cube in \(timeTaken) seconds", preferredStyle: .alert)
+            let timeTaken = Calendar.current.dateComponents([.second], from: timeStarted, to: Date.now)
+            let ac = UIAlertController(title: "Congrats", message: "You comleted the cube in \(timeTaken.second!) seconds", preferredStyle: .alert)
+            
+            if(timeTaken.second! < AppData.timeTop.second!) {
+                AppData.timeTop = timeTaken
+                AppData.dateTop = Date.now
+            }
+            
+            AppData.timeLast = timeTaken
+            AppData.dateLast = Date.now
+            
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(AppData.timeTop) {
+                UserDefaults.standard.set(encoded, forKey: "timeTop")
+            }
+            if let encoded = try? encoder.encode(AppData.dateTop) {
+                UserDefaults.standard.set(encoded, forKey: "dateTop")
+            }
+            if let encoded = try? encoder.encode(AppData.timeLast) {
+                UserDefaults.standard.set(encoded, forKey: "timeLast")
+            }
+            if let encoded = try? encoder.encode(AppData.dateLast) {
+                UserDefaults.standard.set(encoded, forKey: "dateLast")
+            }
+            
             ac.addAction(UIAlertAction(title: "Ok", style: .default))
             present(ac, animated: true)
         } else {
