@@ -210,8 +210,25 @@ struct Cube {
                 state[4][sel3[1]] = original[1][selected[1]]
                 state[4][sel3[2]] = original[1][selected[2]]
             default:
-                print("L150 err")
+                print("sp right err")
             }
+        }
+    }
+
+    mutating func shiftLeft(_ currentSide: Int, _ selected: [Int], _ isRow: Bool) {
+        let original = state
+        
+        let sideList = mapHorizontalSides(currentSide)
+        for side in 0..<sideList.count {
+          //print("side: \(side)")
+          for square in selected {
+            //print("sd:\(side)  sq:\(square)")
+            if(side == 3) {
+              state[sideList[side]][square] = original[sideList[0]][square]
+              continue
+            }
+            state[sideList[side]][square] = original[sideList[side + 1]][square]
+          }
         }
     }
     
@@ -261,25 +278,8 @@ struct Cube {
                 state[4][sel1[1]] = original[5][sel2[1]]
                 state[4][sel1[2]] = original[5][sel2[2]]
             default:
-                print("L150 err")
+                print("sp left err")
             }
-        }
-    }
-
-    mutating func shiftLeft(_ currentSide: Int, _ selected: [Int], _ isRow: Bool) {
-        let original = state
-        
-        let sideList = mapHorizontalSides(currentSide)
-        for side in 0..<sideList.count {
-          //print("side: \(side)")
-          for square in selected {
-            //print("sd:\(side)  sq:\(square)")
-            if(side == 3) {
-              state[sideList[side]][square] = original[sideList[0]][square]
-              continue
-            }
-            state[sideList[side]][square] = original[sideList[side + 1]][square]
-          }
         }
     }
 
@@ -299,6 +299,57 @@ struct Cube {
         }
       }
     }
+    
+    mutating func specialShiftUp(_ currentSide: Int, _ selected: [Int]) {
+        let original = state
+        var sideList: [Int]
+        var sel1: [Int]
+        var sel2: [Int]
+        var sel3: [Int]
+        
+        if(currentSide == 2) {
+            sideList = [2,5,4,1]
+        } else {
+            sideList = [4,1,2,5]
+        }
+        
+        if(selected == [0,3,6]) {
+            sel1 = [6,7,8]
+            sel2 = [8,5,2]
+            sel3 = [2,1,0]
+            rotateS0(true)
+        } else {
+            sel1 = [0,1,2]
+            sel2 = [6,3,0]
+            sel3 = [8,7,6]
+            rotateS3(true)
+        }
+        
+        for side in 0..<sideList.count {
+            print(sideList[side])
+
+            switch(sideList[side]) {
+            case 1:
+                state[1][sel3[0]] = original[2][selected[0]]
+                state[1][sel3[1]] = original[2][selected[1]]
+                state[1][sel3[2]] = original[2][selected[2]]
+            case 2:
+                state[2][selected[0]] = original[5][sel1[0]]
+                state[2][selected[1]] = original[5][sel1[1]]
+                state[2][selected[2]] = original[5][sel1[2]]
+            case 5:
+                state[5][sel1[0]] = original[4][sel2[0]]
+                state[5][sel1[1]] = original[4][sel2[1]]
+                state[5][sel1[2]] = original[4][sel2[2]]
+            case 4:
+                state[4][sel2[0]] = original[1][sel3[0]]
+                state[4][sel2[1]] = original[1][sel3[1]]
+                state[4][sel2[2]] = original[1][sel3[2]]
+            default:
+                print("L150 err")
+            }
+        }
+    }
 
     mutating func shiftDown(_ currentSide: Int, _ selected: [Int], _ isRow: Bool) {
       let sideList = mapVerticalSides(currentSide)
@@ -317,7 +368,54 @@ struct Cube {
       }
     }
     
-    func clearSelection() {
+    mutating func specialShiftDown(_ currentSide: Int, _ selected: [Int]) {
+        let original = state
+        var sideList: [Int]
+        var sel1: [Int]
+        var sel2: [Int]
+        var sel3: [Int]
         
+        if(currentSide == 2) {
+            sideList = [2,5,4,1]
+        } else {
+            sideList = [4,1,2,5]
+        }
+        
+        if(selected == [0,3,6]) {
+            sel1 = [6,7,8]
+            sel2 = [8,5,2]
+            sel3 = [2,1,0]
+            rotateS0(true)
+        } else {
+            sel1 = [0,1,2]
+            sel2 = [6,3,0]
+            sel3 = [8,7,6]
+            rotateS3(true)
+        }
+        
+        for side in 0..<sideList.count {
+            print(sideList[side])
+
+            switch(sideList[side]) {
+            case 1:
+                state[1][sel3[0]] = original[4][sel2[0]]
+                state[1][sel3[1]] = original[4][sel2[1]]
+                state[1][sel3[2]] = original[4][sel2[2]]
+            case 2:
+                state[2][selected[0]] = original[1][sel3[0]]
+                state[2][selected[1]] = original[1][sel3[1]]
+                state[2][selected[2]] = original[1][sel3[2]]
+            case 5:
+                state[5][sel1[0]] = original[2][selected[0]]
+                state[5][sel1[1]] = original[2][selected[1]]
+                state[5][sel1[2]] = original[2][selected[2]]
+            case 4:
+                state[4][sel2[0]] = original[5][sel1[0]]
+                state[4][sel2[1]] = original[5][sel1[1]]
+                state[4][sel2[2]] = original[5][sel1[2]]
+            default:
+                print("L150 err")
+            }
+        }
     }
 }
