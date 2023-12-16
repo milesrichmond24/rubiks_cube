@@ -24,31 +24,37 @@ class HistoryViewController: UIViewController {
         if let data = UserDefaults.standard.data(forKey: "timeTop") {
             if let decoded = try? decoder.decode(DateComponents.self, from: data) {
                 AppData.timeTop = decoded
+                timeTop.text = AppData.dateTop.formatted(.dateTime)
             }
+        } else {
+            timeTop.text = "No data"
         }
         
         if let data = UserDefaults.standard.data(forKey: "dateTop") {
             if let decoded = try? decoder.decode(Date.self, from: data) {
                 AppData.dateTop = decoded
+                dateTop.text = "\t\(AppData.timeTop.second!) seconds"
             }
+        } else {
+            dateTop.text = "No data"
         }
         
         if let data = UserDefaults.standard.data(forKey: "timeLast") {
             if let decoded = try? decoder.decode(DateComponents.self, from: data) {
                 AppData.timeLast = decoded
+                timeLast.text = AppData.dateLast.formatted(.dateTime)
             }
+        } else {
+            timeLast.text = "No data"
         }
         
         if let data = UserDefaults.standard.data(forKey: "dateLast") {
             if let decoded = try? decoder.decode(Date.self, from: data) {
                 AppData.dateLast = decoded
+                dateLast.text = "\t\(AppData.timeLast.second!) seconds"
             }
+        } else {
+            dateLast.text = "No data"
         }
-        
-        dateTop.text = AppData.dateTop.formatted(.dateTime)
-        timeTop.text = "\t\(AppData.timeTop.second!) seconds"
-        dateLast.text = AppData.dateLast.formatted(.dateTime)
-        timeLast.text = "\t\(AppData.timeLast.second!) seconds"
     }
-
 }
