@@ -34,6 +34,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var selectType: Bool = true
     
     var c = Cube(6,3,3)
+    var timeStarted = Date.now
     
     let colorMap: [Int:UIColor] = [
         0 : UIColor.red,
@@ -295,6 +296,24 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             
             c.specialShiftRight(side, squareSelected)
             collectionView.reloadData()
+        }
+    }
+
+    @IBAction func randomizeCube(_ sender: UIButton) {
+        c = Cube(6,3,3)
+        timeStarted = Date.now
+    }
+    
+    @IBAction func finished(_ sender: UIButton) {
+        if(c.isSolved()) {
+            let timeTaken = Calendar.current.dateComponents([.second], from: timeStarted, to: Date.now).second!
+            let ac = UIAlertController(title: "Congrats", message: "You comleted the cube in \(timeTaken) seconds", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Error", message: "Cube is not solved", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default))
+            present(ac, animated: true)
         }
     }
 }

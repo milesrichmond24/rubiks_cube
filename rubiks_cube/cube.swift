@@ -418,4 +418,16 @@ struct Cube {
             }
         }
     }
+    
+    func isSolved() -> Bool {
+        for side in state {
+            for square in side {
+                if(square != side[0]) {
+                    return false
+                }
+            }
+        }
+        
+        return true
+    }
 }
