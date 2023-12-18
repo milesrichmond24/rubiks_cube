@@ -6,22 +6,9 @@
 //
 
 
-
-
-
-
-
-
-
-
-//
-// Note to the user:
-// This game requires a bit of luck. Part of the challenge is to identify when the cube
-// is not solvable. This is a bit different than a regular cube and should pose an interesting
-// challenge to the user.
-//
-
-
+// The following concepts are contained:
+// Variables, operators, if/else, loops, switch, arrays, dictionaries, functions, classes, structs, persistance
+// Button, Label, stack view, imageView, collectionView, viewController, alertController, tabBarController, GestureRecognizer, constraints
 import UIKit
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
